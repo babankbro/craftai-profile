@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { PartnerBanner } from "@/components/team/partner-banner";
 import { TeamSection } from "@/components/team/team-section";
 import {
   PARTNER_ORGS,
@@ -24,7 +25,15 @@ export default function TeamPage() {
           borderColor: "var(--th-border)",
         }}
       >
-        <div className="mx-auto max-w-6xl px-6 py-14 sm:py-16">
+        <div className="mx-auto max-w-6xl px-6 pb-14 pt-8 sm:pb-16">
+          {/* แถบโลโก้หน่วยงานร่วมโครงการ — อ้างอิงจากหน้า /lms/login */}
+          <PartnerBanner />
+
+          <div
+            className="my-8 h-px w-full"
+            style={{ background: "var(--th-border)" }}
+          />
+
           <span
             className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium"
             style={{
@@ -50,10 +59,7 @@ export default function TeamPage() {
             className="mt-3 max-w-3xl text-sm leading-relaxed sm:text-base"
             style={{ color: "var(--th-text-muted)" }}
           >
-            โครงการวิจัยเชิงปฏิบัติการแบบมีส่วนร่วม เพื่อพัฒนาความฉลาดรู้ด้านการอ่านและ
-            การคิดอย่างมีวิจารณญาณ สำหรับนักเรียนมัธยมศึกษาตอนต้นของสถานศึกษา
-            สังกัดองค์กรปกครองส่วนท้องถิ่น ผ่านการพัฒนาครูและบูรณาการการใช้
-            ปัญญาประดิษฐ์ (AI) ในจังหวัดกาฬสินธุ์
+            บุคลากรผู้ร่วมดำเนินโครงการ แบ่งเป็น 3 ทีมทำงานและกลุ่มผู้ช่วยนักวิจัย
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-2">

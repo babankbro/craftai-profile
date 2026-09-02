@@ -38,6 +38,11 @@
   --th-nav-border: #6d28d940;
   --th-nav-hover-bg: #6d28d914;
   --th-nav-hover-color: #3b0764;
+  /* แถบโลโก้พาร์ทเนอร์ — ใช้แนวเดียวกับ sponsor bar บน craftai.ksu.ac.th */
+  --th-logo-filter: saturate(1.05);
+  --th-logo-opacity: 0.9;
+  --th-logobar-bg: #ffffff8c;
+  --th-logobar-border: #6d28d91f;
 }
 
 .dark,
@@ -67,6 +72,11 @@
   --th-nav-border: #a78bfa40;
   --th-nav-hover-bg: #7c3aed26;
   --th-nav-hover-color: #ffffff;
+  /* โหมดมืด: แผงโปร่งสีขาวจาง ๆ ทับบน gradient ให้โลโก้อ่านออกโดยไม่เป็นแถบขาวทึบ */
+  --th-logo-filter: brightness(1.12);
+  --th-logo-opacity: 0.92;
+  --th-logobar-bg: #ffffff21;
+  --th-logobar-border: #ffffff2e;
 }
 
 /* hover ของการ์ดและลิงก์นำทาง — เลียนแบบพฤติกรรมบนเว็บโครงการ */

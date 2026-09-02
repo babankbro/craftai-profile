@@ -37,6 +37,11 @@
   --th-nav-border: #6d28d940;
   --th-nav-hover-bg: #6d28d914;
   --th-nav-hover-color: #3b0764;
+  /* แถบโลโก้พาร์ทเนอร์ — ใช้แนวเดียวกับ sponsor bar บน craftai.ksu.ac.th */
+  --th-logo-filter: saturate(1.05);
+  --th-logo-opacity: 0.9;
+  --th-logobar-bg: #ffffff8c;
+  --th-logobar-border: #6d28d91f;
 }
 
 .dark,
@@ -66,6 +71,11 @@
   --th-nav-border: #a78bfa40;
   --th-nav-hover-bg: #7c3aed26;
   --th-nav-hover-color: #ffffff;
+  /* โหมดมืด: แผงโปร่งสีขาวจาง ๆ ทับบน gradient ให้โลโก้อ่านออกโดยไม่เป็นแถบขาวทึบ */
+  --th-logo-filter: brightness(1.12);
+  --th-logo-opacity: 0.92;
+  --th-logobar-bg: #ffffff21;
+  --th-logobar-border: #ffffff2e;
 }
 
 /* hover ของการ์ดและลิงก์นำทาง — เลียนแบบพฤติกรรมบนเว็บโครงการ */
@@ -81,10 +91,10 @@
 
 body{font-family:"Noto Sans Thai","Noto Sans",sans-serif;background:var(--th-bg-page)}</style></head>
 <body><div class="min-h-full" style="background:var(--th-bg-page)">
-<section class="border-b" style="background:var(--th-hero-bg);border-color:var(--th-border)"><div class="mx-auto max-w-6xl px-6 py-14 sm:py-16">
+<section class="border-b" style="background:var(--th-hero-bg);border-color:var(--th-border)"><div class="mx-auto max-w-6xl px-6 pb-14 pt-8 sm:pb-16"><div class="mx-auto flex w-fit max-w-full flex-wrap items-center justify-center gap-x-7 gap-y-3 rounded-2xl border px-6 py-3 backdrop-blur-sm sm:gap-x-9" style="background:var(--th-logobar-bg);border-color:var(--th-logobar-border)"><img src="./public/logos/logo-mhesi.png" alt="กระทรวงการอุดมศึกษา วิทยาศาสตร์ วิจัยและนวัตกรรม" class="object-contain" style="height:40px;width:auto;filter:var(--th-logo-filter);opacity:var(--th-logo-opacity)"><img src="./public/logos/logo-sksv.png" alt="สกสว." class="object-contain" style="height:36px;width:auto;filter:var(--th-logo-filter);opacity:var(--th-logo-opacity)"><img src="./public/logos/logo-bpt.png" alt="บพท." class="object-contain" style="height:34px;width:auto;filter:var(--th-logo-filter);opacity:var(--th-logo-opacity)"><img src="./public/logos/logo-saturday-school.png" alt="Saturday School" class="object-contain" style="height:38px;width:auto;filter:var(--th-logo-filter);opacity:var(--th-logo-opacity)"><img src="./public/logos/logo-craft-ai.png" alt="Craft AI" class="object-contain" style="height:34px;width:auto;filter:var(--th-logo-filter);opacity:var(--th-logo-opacity)"><img src="./public/logos/logo-tdri.png" alt="TDRI" class="object-contain" style="height:28px;width:auto;filter:var(--th-logo-filter);opacity:var(--th-logo-opacity)"><img src="./public/logos/logo-kalasin-uni.png" alt="มหาวิทยาลัยกาฬสินธุ์" class="object-contain" style="height:38px;width:auto;filter:var(--th-logo-filter);opacity:var(--th-logo-opacity)"></div><div class="my-8 h-px w-full" style="background:var(--th-border)"></div>
 <span class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium" style="background:var(--th-badge-bg);border-color:var(--th-badge-border);color:var(--th-badge-text)"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--th-badge-dot)"></span>CARIA Kalasin</span>
 <h1 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl" style="color:var(--th-text)">ทีมวิจัยโครงการ</h1>
-<p class="mt-3 max-w-3xl text-sm leading-relaxed sm:text-base" style="color:var(--th-text-muted)">โครงการวิจัยเชิงปฏิบัติการแบบมีส่วนร่วม เพื่อพัฒนาความฉลาดรู้ด้านการอ่านและการคิดอย่างมีวิจารณญาณ สำหรับนักเรียนมัธยมศึกษาตอนต้นของสถานศึกษาสังกัดองค์กรปกครองส่วนท้องถิ่น ผ่านการพัฒนาครูและบูรณาการการใช้ปัญญาประดิษฐ์ (AI) ในจังหวัดกาฬสินธุ์</p>
+<p class="mt-3 max-w-3xl text-sm leading-relaxed sm:text-base" style="color:var(--th-text-muted)">บุคลากรผู้ร่วมดำเนินโครงการ แบ่งเป็น 3 ทีมทำงานและกลุ่มผู้ช่วยนักวิจัย</p>
 <div class="mt-6 flex flex-wrap items-center gap-2"><span class="rounded-full border px-3 py-1 text-xs" style="background:var(--th-sponsor-bg);border-color:var(--th-sponsor-border);color:var(--th-text-muted)">มหาวิทยาลัยกาฬสินธุ์</span><span class="rounded-full border px-3 py-1 text-xs" style="background:var(--th-sponsor-bg);border-color:var(--th-sponsor-border);color:var(--th-text-muted)">สำนักงานศึกษาธิการจังหวัดกาฬสินธุ์</span><span class="rounded-full border px-3 py-1 text-xs" style="background:var(--th-sponsor-bg);border-color:var(--th-sponsor-border);color:var(--th-text-muted)">องค์กรปกครองส่วนท้องถิ่นจังหวัดกาฬสินธุ์</span></div>
 <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3"><div><div class="text-2xl font-bold leading-none" style="color:var(--th-text-cyan)">33</div><div class="mt-1 text-xs" style="color:var(--th-text-faint)">บุคลากรทั้งหมด</div></div><div><div class="text-2xl font-bold leading-none" style="color:var(--th-text-cyan)">4</div><div class="mt-1 text-xs" style="color:var(--th-text-faint)">กลุ่มทีมทำงาน</div></div><div><div class="text-2xl font-bold leading-none" style="color:var(--th-text-cyan)">3</div><div class="mt-1 text-xs" style="color:var(--th-text-faint)">หน่วยงานร่วมโครงการ</div></div></div>
 <nav class="mt-8 flex flex-wrap gap-2"><a href="#team-a" class="th-nav-link rounded-lg border px-3 py-1.5 text-[13px] transition-colors" style="border-color:var(--th-nav-border);color:var(--th-nav-color)">ทีม A</a><a href="#team-b" class="th-nav-link rounded-lg border px-3 py-1.5 text-[13px] transition-colors" style="border-color:var(--th-nav-border);color:var(--th-nav-color)">ทีม B</a><a href="#team-c" class="th-nav-link rounded-lg border px-3 py-1.5 text-[13px] transition-colors" style="border-color:var(--th-nav-border);color:var(--th-nav-color)">ทีม C</a><a href="#assistants" class="th-nav-link rounded-lg border px-3 py-1.5 text-[13px] transition-colors" style="border-color:var(--th-nav-border);color:var(--th-nav-color)">ผู้ช่วยนักวิจัย</a></nav>
