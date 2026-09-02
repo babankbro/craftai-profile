@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────────────
+ * CARIA Kalasin theme tokens — คัดลอกค่าจริงจาก https://craftai.ksu.ac.th
+ *
+ * วิธีใช้: วางบล็อกนี้ต่อท้าย app/globals.css (ไม่ต้องเพิ่มไฟล์ CSS ใหม่
+ * ตามข้อตกลงใน CLAUDE.md) หน้า /team อ้างอิงตัวแปรเหล่านี้ทั้งหมด
+ *
+ * ค่าเริ่มต้น = โหมดสว่าง, โหมดมืดผูกกับทั้ง .dark (next-themes ของ LMS)
+ * และ [data-theme="dark"] (แบบเดียวกับเว็บ craftai.ksu.ac.th)
+ * ───────────────────────────────────────────────────────────────────── */
+
+:root {
+  --th-bg-page: #f5f3ff;
+  --th-bg-surface: #ffffff;
+  --th-border: #6d28d91f;
+  --th-text: #1e1b4b;
+  --th-text-muted: #4c1d95;
+  --th-text-faint: #6d28d980;
+  --th-text-cyan: #0891b2;
+  --th-hero-bg: linear-gradient(160deg, #eef2ff 0%, #ddd6fe 45%, #c4b5fd 75%, #a78bfa 100%);
+  --th-sponsor-bg: #ffffffbf;
+  --th-sponsor-border: #6d28d91f;
+  --th-badge-bg: #6d28d91a;
+  --th-badge-border: #6d28d959;
+  --th-badge-text: #4c1d95;
+  --th-badge-dot: #6d28d9;
+  --th-card-bg: linear-gradient(145deg, #fff 0%, #f5f3ff 60%, #ede9fe 100%);
+  --th-card-border: #6d28d92e;
+  --th-card-border-h: #6d28d98c;
+  --th-card-shadow: 0 4px 16px #6d28d91a;
+  --th-card-shadow-h: 0 16px 40px #6d28d933, 0 0 0 1px #6d28d926;
+  --th-card-title: #1e1b4b;
+  --th-card-desc: #4c1d95;
+  --th-nav-color: #4c1d95;
+  --th-nav-border: #6d28d940;
+  --th-nav-hover-bg: #6d28d914;
+  --th-nav-hover-color: #3b0764;
+}
+
+.dark,
+:root[data-theme="dark"] {
+  --th-bg-page: #0a0f1e;
+  --th-bg-surface: #0f172a;
+  --th-border: #6366f133;
+  --th-text: #ffffff;
+  --th-text-muted: #c4b5fdd9;
+  --th-text-faint: #c4b5fd80;
+  --th-text-cyan: #22d3ee;
+  --th-hero-bg: linear-gradient(160deg, #0f172a 0%, #1e1b4b 35%, #312e81 65%, #3b0764 100%);
+  --th-sponsor-bg: #ffffff0d;
+  --th-sponsor-border: #ffffff14;
+  --th-badge-bg: #7c3aed33;
+  --th-badge-border: #7c3aed80;
+  --th-badge-text: #c4b5fd;
+  --th-badge-dot: #a855f7;
+  --th-card-bg: linear-gradient(145deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+  --th-card-border: #6366f140;
+  --th-card-border-h: #7c3aedb3;
+  --th-card-shadow: 0 4px 16px #0f172a80;
+  --th-card-shadow-h: 0 16px 40px #7c3aed59, 0 0 0 1px #7c3aed33;
+  --th-card-title: #ffffff;
+  --th-card-desc: #c4b5fdd9;
+  --th-nav-color: #c4b5fdd9;
+  --th-nav-border: #a78bfa40;
+  --th-nav-hover-bg: #7c3aed26;
+  --th-nav-hover-color: #ffffff;
+}
+
+/* hover ของการ์ดและลิงก์นำทาง — เลียนแบบพฤติกรรมบนเว็บโครงการ */
+.th-card:hover {
+  border-color: var(--th-card-border-h);
+  box-shadow: var(--th-card-shadow-h);
+}
+
+.th-nav-link:hover {
+  background: var(--th-nav-hover-bg);
+  color: var(--th-nav-hover-color);
+}
+
+body {
+  background: var(--th-bg-page);
+  color: var(--th-text);
+}

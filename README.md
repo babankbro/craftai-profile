@@ -5,9 +5,24 @@
 - ธีม: คัดลอก design token จริงจาก https://craftai.ksu.ac.th (ตัวแปร `--th-*` ครบชุด ทั้งโหมดสว่างและมืด)
 - สไตล์โค้ด: ตาม [babankbro/lms-craft-ai](https://github.com/babankbro/lms-craft-ai) — Next.js 15 App Router, server component, Tailwind utility-first, ข้อความ UI ภาษาไทย
 
+## รันเอง / deploy
+
+repo นี้เป็น Next.js 15 app ที่สมบูรณ์ในตัว (build ผ่าน `/team` เป็น static prerender)
+
+```bash
+npm install
+npm run dev        # http://localhost:3000  → redirect ไป /team
+npm run build      # ตรวจก่อน deploy
+```
+
+deploy ขึ้น Vercel: `vercel` (preview) หรือ `vercel --prod`
+
 ## โครงสร้าง
 
 ```
+app/layout.tsx                 root layout + ฟอนต์ Noto Sans Thai (เฉพาะตอนรัน standalone)
+app/page.tsx                   redirect ไป /team (เฉพาะตอนรัน standalone)
+app/globals.css                tailwind directives + design token (เฉพาะตอนรัน standalone)
 app/team/page.tsx              หน้าเพจ /team (server component + Metadata)
 app/globals.team-theme.css     design token — วางต่อท้าย app/globals.css ของโปรเจกต์ปลายทาง
 components/team/               member-card.tsx, team-section.tsx
@@ -18,7 +33,11 @@ scripts/extract-profiles.py    สคริปต์ตัดรูปจาก 
 source/profiles/               รูปต้นฉบับ 300 DPI + index.md / index.csv
 ```
 
-## นำไปใช้ในโปรเจกต์ Next.js
+## นำไปใช้ในโปรเจกต์ Next.js อื่น (เช่น lms-craft-ai)
+
+คัดลอกเฉพาะ 5 อย่างนี้ ไม่ต้องเอา `app/layout.tsx`, `app/page.tsx`, `app/globals.css`,
+`package.json` หรือไฟล์ config ไปด้วย เพราะโปรเจกต์ปลายทางมีของตัวเองอยู่แล้ว
+
 
 ```bash
 cp lib/research-team.ts        <repo>/lib/
