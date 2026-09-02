@@ -1,0 +1,4 @@
+# ไม่ต้องอัปโหลดขึ้น Vercel — เป็นไฟล์ต้นฉบับ/เครื่องมือ ไม่ได้ใช้ตอน runtime
+source/
+scripts/
+preview.html
