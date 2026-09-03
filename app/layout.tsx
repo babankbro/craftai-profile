@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Thai } from "next/font/google";
+import localFont from "next/font/local";
 
 import "./globals.css";
 
-const notoSansThai = Noto_Sans_Thai({
-  subsets: ["thai", "latin"],
-  weight: ["400", "500", "600", "700"],
+const notoSansThai = localFont({
+  src: "./fonts/NotoSansThai.ttf",
+  weight: "100 900",
+  display: "swap",
   variable: "--font-noto-sans-thai",
 });
 

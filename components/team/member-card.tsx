@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import type { Member } from "@/lib/research-team";
+import { publicAsset } from "@/lib/site";
 
 export function MemberCard({ member }: { member: Member }) {
   return (
@@ -17,7 +18,7 @@ export function MemberCard({ member }: { member: Member }) {
         style={{ borderColor: "var(--th-border)" }}
       >
         <Image
-          src={member.photo}
+          src={publicAsset(member.photo)}
           alt={member.name}
           fill
           sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 200px"

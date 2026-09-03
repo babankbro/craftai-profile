@@ -1,79 +1,102 @@
 # craftai-profile
 
-หน้าโปรไฟล์ทีมวิจัยโครงการ **CARIA Kalasin** — 33 คน แบ่งเป็น ทีม A / ทีม B / ทีม C / ผู้ช่วยนักวิจัย
+หน้าโปรไฟล์ทีมวิจัย CARIA Kalasin — Next.js 15 / React 19
 
-- ธีม: คัดลอก design token จริงจาก https://craftai.ksu.ac.th (ตัวแปร `--th-*` ครบชุด ทั้งโหมดสว่างและมืด)
-- สไตล์โค้ด: ตาม [babankbro/lms-craft-ai](https://github.com/babankbro/lms-craft-ai) — Next.js 15 App Router, server component, Tailwind utility-first, ข้อความ UI ภาษาไทย
+แอปนี้ deploy แยกผ่าน Coolify (Nixpacks) ที่ **https://craftai.ksu.ac.th/team**
+ใช้โดเมนร่วมกับเว็บหลักและแอปอื่น เช่น `/prompt-banking`
 
-## รันเอง / deploy
-
-repo นี้เป็น Next.js 15 app ที่สมบูรณ์ในตัว (build ผ่าน `/team` เป็น static prerender)
+## รันในเครื่อง
 
 ```bash
-npm install
-npm run dev        # http://localhost:3000  → redirect ไป /team
-npm run build      # ตรวจก่อน deploy
+npm ci
+npm run dev
 ```
 
-deploy ขึ้น Vercel: `vercel` (preview) หรือ `vercel --prod`
-
-## โครงสร้าง
-
-```
-app/layout.tsx                 root layout + ฟอนต์ Noto Sans Thai (เฉพาะตอนรัน standalone)
-app/page.tsx                   redirect ไป /team (เฉพาะตอนรัน standalone)
-app/globals.css                tailwind directives + design token (เฉพาะตอนรัน standalone)
-app/team/page.tsx              หน้าเพจ /team (server component + Metadata)
-app/globals.team-theme.css     design token — วางต่อท้าย app/globals.css ของโปรเจกต์ปลายทาง
-components/team/               member-card.tsx, team-section.tsx
-lib/research-team.ts           ข้อมูลทีม 33 คน (typed)
-public/team/*.jpg              รูปโปรไฟล์ 33 ไฟล์ (520px) — path ตรงกับ lib/research-team.ts
-preview.html                   พรีวิว static (Tailwind CDN) ไม่ต้องรัน Next.js
-scripts/extract-profiles.py    สคริปต์ตัดรูปจาก PDF ต้นฉบับ (PyMuPDF)
-source/profiles/               รูปต้นฉบับ 300 DPI + index.md / index.csv
-```
-
-## นำไปใช้ในโปรเจกต์ Next.js อื่น (เช่น lms-craft-ai)
-
-คัดลอกเฉพาะ 5 อย่างนี้ ไม่ต้องเอา `app/layout.tsx`, `app/page.tsx`, `app/globals.css`,
-`package.json` หรือไฟล์ config ไปด้วย เพราะโปรเจกต์ปลายทางมีของตัวเองอยู่แล้ว
-
+เปิด http://localhost:3000 ในโหมด dev ได้โดยตรง ส่วน production ใช้ `/team`
 
 ```bash
-cp lib/research-team.ts        <repo>/lib/
-cp -r components/team          <repo>/components/
-cp -r app/team                 <repo>/app/
-cp -r public/team              <repo>/public/
-cat app/globals.team-theme.css >> <repo>/app/globals.css
+npm run build
+npm run typecheck
+npm run start
 ```
 
-เปิด `/team` ได้ทันที — หน้านี้เป็น static ไม่แตะฐานข้อมูล จึงไม่ต้องใส่ `export const dynamic`
+## ตั้งค่า Coolify
 
-## ธีม
+สร้าง Application จาก Git repository นี้ แล้วตั้งค่าดังนี้:
 
-- ค่าเริ่มต้น (`:root`) = โหมดสว่าง
-- โหมดมืดผูกกับ `.dark` (next-themes) **และ** `[data-theme="dark"]` (แบบเว็บโครงการ)
+| ช่อง | ค่า |
+| --- | --- |
+| Build Pack | Nixpacks |
+| Is it a static site? | ปิด |
+| Domains | `https://craftai.ksu.ac.th/team` |
+| Base Directory | `/` |
+| Install Command | `npm ci` |
+| Build Command | `npm run build` |
+| Start Command | `npm run start` |
+| Ports Exposes | `3000` |
+| Advanced → Strip Prefixes | **ปิด** |
 
-## พรีวิว
+`nixpacks.toml` กำหนด Node.js 22 และคำสั่ง build/start ไว้แล้ว
+หากมีค่า override ใน Coolify ให้ใช้ค่าเดียวกับตาราง
+ตั้ง environment variable `PORT=3000` สำหรับ runtime
+ไม่ต้องมีฐานข้อมูลหรือ persistent storage
+
+เปิด Healthcheck: HTTP, host `localhost`, port `3000`, path `/team/health`,
+method GET, expected status `200` (ตั้ง start period เช่น 30 วินาที)
+
+กด Save แล้ว Deploy แอปต้องได้รับ request พร้อม prefix `/team` เสมอ
+ถ้า Coolify รุ่นที่ใช้อยู่ไม่มีตัวเลือก Strip Prefixes ให้ตรวจ Container Labels
+และเอา middleware `stripprefix` ของแอปนี้ออกจาก router โดยคง middleware อื่นไว้
+อย่าเปลี่ยน routing ของเว็บหลักหรือแอปอื่น
+
+ไม่ต้องตั้ง `assetPrefix` หรือ rewrite `/team` เป็น `/`
+เพราะ Next.js จัดการ prefix ผ่าน `basePath` อยู่แล้ว
+อย่าใส่เฉพาะ `https://craftai.ksu.ac.th` ใน Domains ของแอปนี้
+
+## ตรวจหลัง deploy
+
+- `/team` แสดงรายชื่อและรูปบุคลากรครบ 33 คน
+- `/team/health` ตอบ `200` และ `{"status":"ok"}`
+- `/team/logos/logo-craft-ai.png` โหลดโลโก้ได้
+- `/team/team/a01.jpg` โหลดรูปต้นฉบับได้ (โฟลเดอร์รูปเดิมชื่อ `team`)
+- Network ใน browser: `/team/_next/static/...` และ `/team/_next/image?...` ไม่เป็น 404
+- refresh `/team` แล้วยังเปิดได้ และเว็บหลักกับ `/prompt-banking` ยังทำงาน
+
+หากหน้าเปิดได้แต่ CSS หรือภาพหาย ให้ตรวจ Strip Prefixes และ redeploy
+หาก healthcheck ได้ 404 ให้ตรวจว่าใช้ `/team/health` แทน `/health`
+
+## โครงสร้างและ path
+
+- `lib/site.ts`: กำหนด `BASE_PATH = "/team"` และ helper สำหรับ public assets
+- `next.config.ts`: ใช้ basePath เดียวกัน
+- `app/page.tsx`: หน้าแรกภายใต้ basePath (URL `/team`)
+- `app/health/route.ts`: endpoint สำหรับ healthcheck
+- `components/team/`: ส่วนประกอบหน้าทีม
+- `lib/research-team.ts`: ข้อมูลบุคลากร 33 คน
+- `public/team/`, `public/logos/`: รูปต้นฉบับและโลโก้
+- `app/fonts/`: Noto Sans Thai พร้อม OFL license ใช้ `next/font/local`
+
+ฟอนต์ถูกเก็บใน repository จึงไม่ต้องดาวน์โหลด Google Fonts ระหว่าง build
+ถ้าเปลี่ยน path ให้แก้ `BASE_PATH` ใน `lib/site.ts`, Domains และ Healthcheck ใน Coolify
+แล้ว build/deploy ใหม่ เพราะ basePath ถูกฝังใน client bundles ตอน build
+
+## พรีวิว HTML และต้นฉบับ
+
+`preview.html` เป็นพรีวิวแยกจาก production Next.js และยังใช้ Tailwind CDN
+รันด้วย `python -m http.server 8931` แล้วเปิด http://localhost:8931/preview.html
+
+รูปต้นฉบับอยู่ใน `source/profiles/` สามารถสร้างใหม่จาก PDF ด้วย:
 
 ```bash
-python3 -m http.server 8931
+python scripts/extract-profiles.py "แนะนำบุคลากร ทีม ABC.pdf" source/profiles
 ```
 
-แล้วเปิด http://localhost:8931/preview.html
+ข้อมูลมาจากเอกสาร “แนะนำบุคลากร ทีม ABC” มหาวิทยาลัยกาฬสินธุ์ หน้า 2–5
+คำอธิบายทีม (`tagline`) เขียนเพิ่มเติม และบางตำแหน่งใช้ “อาจารย์” จากบริบทของคณะ
 
-## ที่มาของข้อมูล
+## เอกสารอ้างอิง
 
-เอกสาร “แนะนำบุคลากร ทีม ABC” (มหาวิทยาลัยกาฬสินธุ์) หน้า 2–5
-ชื่อและตำแหน่งถอดตามคำบรรยายใต้ภาพ รูปตัดจากกรอบรูปในสไลด์ที่ 300 DPI
-
-สร้างรูปใหม่จาก PDF ได้ด้วย:
-
-```bash
-python3 scripts/extract-profiles.py "แนะนำบุคลากร ทีม ABC.pdf" source/profiles
-```
-
-## หมายเหตุที่ควรตรวจก่อนเผยแพร่
-
-1. `tagline` ของแต่ละทีมใน `lib/research-team.ts` เป็นคำอธิบายที่เขียนขึ้นเอง — เอกสารต้นฉบับไม่ได้ระบุขอบเขตงานของแต่ละทีม
-2. สมาชิกทีม B/C บางคน เอกสารระบุเพียงชื่อคณะ จึงใส่ `role: "อาจารย์"` คู่กับ `org: <คณะ>` เพื่อให้การ์ดมีโครงสร้างเดียวกัน
+- [Next.js basePath](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath)
+- [Coolify Next.js / Nixpacks](https://coolify.io/docs/applications/nextjs)
+- [Coolify path routing / Strip Prefixes](https://next.coolify.io/docs/core/networking/domains)
+- [Noto Sans Thai ต้นฉบับและ license](https://github.com/google/fonts/tree/main/ofl/notosansthai)

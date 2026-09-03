@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { publicAsset } from "@/lib/site";
 
 /**
  * แถบโลโก้หน่วยงานร่วมโครงการ
@@ -29,7 +30,7 @@ export function PartnerBanner() {
       {PARTNER_LOGOS.map((logo) => (
         <Image
           key={logo.src}
-          src={logo.src}
+          src={publicAsset(logo.src)}
           alt={logo.alt}
           width={320}
           height={320}
