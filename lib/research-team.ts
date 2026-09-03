@@ -131,7 +131,7 @@ export const RESEARCH_TEAMS: Team[] = [
       },
       {
         id: "b03",
-        name: "ผศ.อามิณฑ์ หล้าวงศ์",
+        name: "ผศ.ดร.อามิณฑ์ หล้าวงศ์",
         role: "หัวหน้าสาขาวิชาวิศวกรรมศาสตร์",
         photo: "/team/b03.jpg",
       },
@@ -186,7 +186,7 @@ export const RESEARCH_TEAMS: Team[] = [
       },
       {
         id: "b11",
-        name: "ผศ.กำธร สารวรรณ",
+        name: "ผศ.ดร.กำธร สารวรรณ",
         role: "อาจารย์",
         org: "คณะวิศวกรรมศาสตร์และเทคโนโลยีอุตสาหกรรม",
         photo: "/team/b11.jpg",
